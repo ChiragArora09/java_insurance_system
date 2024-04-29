@@ -24,6 +24,7 @@ public class AdminController {
 			System.out.println("Press 3. Get a Policy");
 			System.out.println("Press 4. Change Policy data");
 			System.out.println("Press 5. Delete Policy");
+			System.out.println("Press 6. Activate Policy");
 			System.out.println("Press 0. Exit");
 			
 			int input = sc.nextInt(); // INPUT FROM USER
@@ -105,7 +106,7 @@ public class AdminController {
 						List<Policy> p = policyService.getAll();
 						System.out.println("ID   NAME   PREMIUM   RATE OF INTEREST");
 						for(Policy policy : p) {
-							System.out.println(policy.getId() + " | " + policy.getName() + " | " + policy.getPremium() + " | " + policy.getRateOfInterest());
+							System.out.println(policy.getId() + " | " + policy.getName() + " | " + policy.getPremium() + " | " + policy.getRateOfInterest() + " | " + policy.getIsActive());
 						}
 						System.out.println("");
 						
@@ -137,9 +138,9 @@ public class AdminController {
 				case 5:
 					try {
 						List<Policy> p = policyService.getAll();
-						System.out.println("ID  NAME  PREMIUM  RATE OF INTEREST");
+						System.out.println("ID  NAME  PREMIUM  RATE_OF_INTEREST  ACTIVE");
 						for(Policy policy : p) {
-							System.out.println(policy.getId() + " | " + policy.getName() + " | " + policy.getPremium() + " | " + policy.getRateOfInterest());
+							System.out.println(policy.getId() + " | " + policy.getName() + " | " + policy.getPremium() + " | " + policy.getRateOfInterest() + " | " + policy.getIsActive());
 						}
 						System.out.println("");
 						
@@ -155,6 +156,30 @@ public class AdminController {
 					}catch(SQLException e) {
 						System.out.println(e.getMessage());
 					}
+					
+					break;
+					
+				case 6:
+					try {
+						List<Policy> p = policyService.getAll();
+						System.out.println("ID  NAME  PREMIUM  RATE_OF_INTEREST  ACTIVE");
+						for(Policy policy : p) {
+							System.out.println(policy.getId() + " | " + policy.getName() + " | " + policy.getPremium() + " | " + policy.getRateOfInterest() + " | " + policy.getIsActive());
+						}
+						System.out.println("");
+						
+						System.out.println("Enter policy ID you want to activate");
+						
+						int policyId = sc.nextInt();
+						
+						int status = policyService.activatePolicy(policyId);
+						if(status==1) {
+							System.out.println("POLICY " + policyId + " has been activated");
+						}
+					}catch(SQLException e) {
+						System.out.println(e.getMessage());
+					}
+					
 					break;
 					
 				default:

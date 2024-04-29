@@ -95,4 +95,14 @@ public class PolicyDaoImpl implements PolicyDao{
 		return status;
 	}
 
+	@Override
+	public int activatePolicy(int policyId) throws SQLException {
+		Connection con = DBConnection.dbConnect();
+		String sql = "UPDATE policy SET active='YES' WHERE id=?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, policyId);
+		int status = pstmt.executeUpdate();
+		return status;
+	}
+
 }

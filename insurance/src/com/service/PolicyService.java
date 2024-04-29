@@ -32,4 +32,8 @@ public class PolicyService {
 		return dao.deactivatePolicy(policyId);
 	}
 
+	public int activatePolicy(int policyId) throws SQLException{
+		return dao.activatePolicy(policyId);
+	}
+
 }

@@ -18,4 +18,6 @@ public interface PolicyDao {
 
 	int deactivatePolicy(int policyId) throws SQLException;
 
+	int activatePolicy(int policyId) throws SQLException;
+
 }
